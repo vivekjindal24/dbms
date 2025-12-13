@@ -1,0 +1,39 @@
+# Git
+.git
+.gitignore
+
+# Dependencies in root (only copy from cse-platform)
+node_modules
+
+# Build artifacts
+.next
+out
+build
+dist
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Environment
+.env*
+!.env.example
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (already in cse-platform)
+README.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

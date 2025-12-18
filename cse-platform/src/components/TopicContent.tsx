@@ -77,11 +77,39 @@ const TopicContent = ({ topic, unitId, topicId }: TopicContentProps) => {
       </div>
 
       {/* Interactive Components based on topic */}
-      {topicId === 'intro-to-db' && <DatabaseModelsTimeline />}
+      {topicId === 'intro-to-db' && (
+        <>
+          <DatabaseModelsTimeline />
+          <div className="my-8">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Database Models Evolution</h3>
+            <img 
+              src="/images/unit1/database-evolution.svg" 
+              alt="Evolution of Database Models"
+              className="w-full rounded-lg shadow-md"
+            />
+          </div>
+        </>
+      )}
       {topicId === 'db-architecture' && (
         <>
           <ThreeSchemaArchitecture />
           <ThreeSchemaArchitectureDiagram />
+          <div className="my-8">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Three-Schema Architecture Diagram</h3>
+            <img 
+              src="/images/unit1/three-schema-architecture.svg" 
+              alt="Three-Schema Architecture"
+              className="w-full rounded-lg shadow-md mb-8"
+            />
+          </div>
+          <div className="my-8">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Data Independence Explained</h3>
+            <img 
+              src="/images/unit1/data-independence.svg" 
+              alt="Data Independence"
+              className="w-full rounded-lg shadow-md"
+            />
+          </div>
         </>
       )}
       {topicId === 'data-models' && <ERDiagram />}

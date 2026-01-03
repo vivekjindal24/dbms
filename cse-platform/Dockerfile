@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy package files
-COPY package.json package-lock.json* ./
+COPY package*.json ./
 RUN \
   if [ -f package-lock.json ]; then npm ci; \
   else echo "Lockfile not found." && npm install; \
@@ -39,7 +39,7 @@ RUN adduser --system --uid 1001 nextjs
 
 # Copy necessary files from standalone build
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone/cse-platform ./
+COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 # Set ownership

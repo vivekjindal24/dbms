@@ -7,7 +7,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy package files from cse-platform directory
-COPY cse-platform/package.json cse-platform/package-lock.json* ./
+# Using a glob avoids failures when package-lock.json is not present.
+COPY cse-platform/package*.json ./
 RUN \
   if [ -f package-lock.json ]; then npm ci; \
   else echo "Lockfile not found." && npm install; \

@@ -5,6 +5,10 @@
 # Dependencies in root (only copy from cse-platform)
 node_modules
 
+# Local environments / source materials
+.venv
+Dbms_study_material
+
 # Build artifacts
 .next
 out

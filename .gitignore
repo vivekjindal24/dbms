@@ -49,3 +49,9 @@ logs
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# Local course source materials (do not commit)
+Dbms_study_material/
+
+# Removed study-materials bundle (prevent re-adding)
+cse-platform/public/study-materials/

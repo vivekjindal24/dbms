@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen">
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="space-y-16\">"
+        <div className="space-y-16">
       {/* Hero Section */}
       <section className="pt-12 pb-16 px-4">
         <div className="max-w-4xl">
@@ -39,7 +39,7 @@ export default function Home() {
       {/* What You'll Learn */}
       <section className="bg-gray-50 -mx-4 px-4 py-12 md:rounded-2xl">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">What you'll learn</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-3">What you&apos;ll learn</h2>
           <p className="text-gray-600 mb-10">The course covers everything from data modeling to transaction management.</p>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -55,7 +55,7 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Skills You'll Build</h3>
+              <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Skills You&apos;ll Build</h3>
               <ul className="space-y-3">
                 {cos.map((co) => (
                   <li key={co.id} className="flex gap-3 text-gray-700">

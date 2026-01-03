@@ -26,6 +26,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Ensure fenced/indented code blocks remain readable.
+   We style inline <code> via ReactMarkdown, but for <pre><code> we must not apply a light background. */
+.prose pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  color: inherit !important;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

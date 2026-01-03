@@ -1,7 +1,10 @@
 'use client';
 
-import { Topic, clos, cos, units } from '@/data/syllabus';
+import { Topic, units } from '@/data/syllabus';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import { 
   ThreeSchemaArchitecture, 
   DatabaseModelsTimeline, 
@@ -23,6 +26,45 @@ interface TopicContentProps {
   unitId: string;
   topicId: string;
 }
+
+const Markdown = ({ content }: { content: string }) => (
+  <ReactMarkdown
+    remarkPlugins={[remarkGfm, remarkBreaks]}
+    components={{
+      img: ({ src, alt }) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src ?? ''}
+          alt={alt ?? ''}
+          className="my-4 rounded-lg shadow-md w-full"
+        />
+      ),
+      a: ({ href, children }) => (
+        <a
+          href={href ?? '#'}
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-600 hover:underline"
+        >
+          {children}
+        </a>
+      ),
+      code: ({ children, ...props }) => (
+        <code
+          className="rounded bg-gray-100 px-1 py-0.5 font-mono text-sm text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+          {...props}
+        >
+          {children}
+        </code>
+      ),
+      pre: ({ children }) => (
+        <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto">{children}</pre>
+      ),
+    }}
+  >
+    {content}
+  </ReactMarkdown>
+);
 
 const TopicContent = ({ topic, unitId, topicId }: TopicContentProps) => {
   // Find current unit and topic indices for navigation
@@ -82,6 +124,7 @@ const TopicContent = ({ topic, unitId, topicId }: TopicContentProps) => {
           <DatabaseModelsTimeline />
           <div className="my-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Database Models Evolution</h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/images/unit1/database-evolution.svg" 
               alt="Evolution of Database Models"
@@ -96,6 +139,7 @@ const TopicContent = ({ topic, unitId, topicId }: TopicContentProps) => {
           <ThreeSchemaArchitectureDiagram />
           <div className="my-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Three-Schema Architecture Diagram</h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/images/unit1/three-schema-architecture.svg" 
               alt="Three-Schema Architecture"
@@ -104,6 +148,7 @@ const TopicContent = ({ topic, unitId, topicId }: TopicContentProps) => {
           </div>
           <div className="my-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Data Independence Explained</h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/images/unit1/data-independence.svg" 
               alt="Data Independence"
@@ -131,39 +176,43 @@ const TopicContent = ({ topic, unitId, topicId }: TopicContentProps) => {
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">The Basics</h2>
         <div className="prose prose-lg text-gray-700">
-          <p className="whitespace-pre-line leading-relaxed">{topic.content.concept}</p>
+          <Markdown content={topic.content.concept} />
         </div>
       </div>
 
       <div className="mb-12 bg-blue-50 p-8 rounded-lg">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Technical Details</h2>
         <div className="prose prose-lg text-gray-700">
-          <p className="whitespace-pre-line leading-relaxed">{topic.content.technicalDepth}</p>
+          <Markdown content={topic.content.technicalDepth} />
         </div>
       </div>
 
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Examples</h2>
-        <div className="bg-gray-900 text-gray-100 p-6 rounded-lg font-mono text-sm overflow-x-auto">
-          <pre className="whitespace-pre-line">{topic.content.examples}</pre>
+        <div className="prose prose-lg text-gray-700">
+          <Markdown content={topic.content.examples} />
         </div>
       </div>
 
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Real-World Use</h2>
         <div className="prose prose-lg text-gray-700">
-          <p className="whitespace-pre-line leading-relaxed">{topic.content.practical}</p>
+          <Markdown content={topic.content.practical} />
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mb-12">
         <div className="border-l-4 border-yellow-400 pl-6">
           <h3 className="text-lg font-bold text-gray-900 mb-3">For exams</h3>
-          <p className="text-gray-700 text-sm whitespace-pre-line leading-relaxed">{topic.content.exam}</p>
+          <div className="prose prose-sm text-gray-700">
+            <Markdown content={topic.content.exam} />
+          </div>
         </div>
         <div className="border-l-4 border-green-500 pl-6">
           <h3 className="text-lg font-bold text-gray-900 mb-3">Key points</h3>
-          <p className="text-gray-700 text-sm whitespace-pre-line leading-relaxed">{topic.content.takeaways}</p>
+          <div className="prose prose-sm text-gray-700">
+            <Markdown content={topic.content.takeaways} />
+          </div>
         </div>
       </div>
 

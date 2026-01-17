@@ -36,7 +36,15 @@ const Markdown = ({ content }: { content: string }) => (
         <img
           src={src ?? ''}
           alt={alt ?? ''}
-          className="my-4 rounded-lg shadow-md w-full"
+          className="my-4 rounded-lg shadow-md bg-white dark:bg-gray-900 mx-auto"
+          style={{ 
+            mixBlendMode: 'multiply',
+            maxWidth: '100%',
+            maxHeight: '600px',
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain'
+          }}
         />
       ),
       a: ({ href, children }) => (
